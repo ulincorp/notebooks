@@ -1,0 +1,12 @@
+1.mysql常用命令
+
+service mysql.server {start|stop|restart|reload|force-reload|status}
+sudo /usr/local/mysql/support-files/mysql.server start
+
+
+2.触发器
+SELECT * FROM information_schema.`TRIGGERS`;
+
+
+3.查询表格创建语句
+SHOW CREATE TABLE 'tablename'
