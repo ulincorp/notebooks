@@ -1,0 +1,74 @@
+express框架之session 数据库存储
+
+
+有时候，我们需要session的声明周期要长一点，比如好多网站有个免密码两周内自动登录的功能。基于这个需求，session必须寻找内存之外的存储载体，数据库能提供完美的解决方案。这里，我选用的是mongodb数据库，作为一个NoSQL数据库，它的基础数据对象时database-collection-document 对象模型非常直观并易于理解，针对node.js 也提供了丰富的驱动和API。express框架提供了针对mongodb的中间件：connect-mongo，我们只需在挂载session的时候在options中传入mongodb的参数即可，程序运行的时候, express app 会自动的替我们管理session的存储，更新和删除。具体可以参考：
+
+https://github.com/kcbanner/connect-mongo
+
+ 
+
+　　测试代码如下： 
+
+var express = require('express');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var MongoStore = require('connect-mongo')(session);
+var app = express();
+
+app.use(cookieParser());
+app.use(session({
+    secret: '12345',
+    name: 'testapp',
+    cookie: {maxAge: 80000 },
+    resave: false,
+    saveUninitialized: true,
+    store: new MongoStore({   //创建新的mongodb数据库
+        host: 'localhost',    //数据库的地址，本机的话就是127.0.0.1，也可以是网络主机
+        port: 27017,          //数据库的端口号
+        db: 'test-app'        //数据库的名称。
+    })
+}));
+
+
+app.get('/awesome', function(req, res){
+    
+    if(req.session.lastPage) {
+        console.log('Last page was: ' + req.session.lastPage + ".");    
+    }    
+    req.session.lastPage = '/awesome';
+    res.send("You're Awesome. And the session expired time is: " + req.session.cookie.maxAge);
+});
+
+app.get('/radical', function(req, res){
+    if (req.session.lastPage) {
+        console.log('Last page was: ' + req.session.lastPage + ".");    
+    }
+    req.session.lastPage = '/radical';
+    res.send('What a radical visit! And the session expired time is: ' + req.session.cookie.maxAge);
+});
+
+app.get('/tubular', function(req, res){
+    if (req.session.lastPage){
+        console.log("Last page was: " + req.session.lastPage + ".");    
+    }
+
+    req.session.lastPage = '/tubular';
+    res.send('Are you a suffer? And the session expired time is: ' + req.session.cookie.maxAge);
+});
+
+
+app.listen(5000);
+
+　　跟session的内存存储一样，只需增加红色部分的store选项即可，app会自动替我们把session存入到mongodb数据，而非内存中。
+
+3.1  session的生命周期：
+
+　　由于session是存在服务器端数据库的，所以的它的生命周期可以持久化，而不仅限于浏览器关闭的时间。具体是由cookie.maxAge 决定：如果maxAge设定是1个小时，那么从这个因浏览器访问服务器导致session创建开始后，session会一直保存在服务器端，即使浏览器关闭，session也会继续存在。如果此时服务器宕机，只要开机后数据库没发生不可逆转的破坏，maxAge时间没过期，那么session是可以继续保持的。
+
+当maxAge时间过期后，session会自动的数据库中移除，对应的还有浏览器的cookie。不过，由于connect-mongo的特殊机制（每1分钟检查一次过期session），session的移除可能在时间上会有一定的滞后。
+
+connect-mongo uses MongoDB's TTL collection feature (2.2+) to have mongod automatically remove expired sessions. (mongod runs this check every minute.)
+
+Note: By connect/express's default, session cookies are set to expire when the user closes their browser (maxAge: null). In accordance with standard industry practices, connect-mongo will set these sessions to expire two weeks from their last 'set'. You can override this behavior by manually setting the maxAge for your cookies -- just keep in mind that any value less than 60 seconds is pointless, as mongod will only delete expired documents in a TTL collection every minute.
+
+　　当然，由于cookie是由浏览器厂商实现的，cookie不具有跨浏览器的特性，例如，我用firefox浏览器在京东上购物时，勾选了2周内免密码输入，但是当我第一次用IE登陆京东时，同样要重新输入密码。所以，这对服务器的同一个操作，不同的浏览器发起的请求，会产生不同的session-cookie。

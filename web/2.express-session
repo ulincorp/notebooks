@@ -1,0 +1,63 @@
+express-session 是基于express框专门用于处理session的中间件。这里不谈express-session怎么安装，只给出相应的实例代码。另外，session的认证机制离不开cookie，需要同时使用cookieParser 中间件，有关的介绍可以专门参考https://github.com/expressjs/session/blob/master/README.md，或者参考http://blog.modulus.io/nodejs-and-express-sessions，这个博客上讲的比较清楚。
+
+
+
+var express = require('express');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+
+var app = express();
+
+app.use(cookieParser());
+app.use(session({
+    secret: '12345',
+    name: 'testapp',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
+    cookie: {maxAge: 80000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+    resave: false,
+    saveUninitialized: true,
+}));
+
+
+app.get('/awesome', function(req, res){
+    
+    if(req.session.lastPage) {
+        console.log('Last page was: ' + req.session.lastPage + ".");    
+    }    
+    req.session.lastPage = '/awesome'; //每一次访问时，session对象的lastPage会自动的保存或更新内存中的session中去。
+    res.send("You're Awesome. And the session expired time is: " + req.session.cookie.maxAge);
+});
+
+app.get('/radical', function(req, res){
+    if (req.session.lastPage) {
+        console.log('Last page was: ' + req.session.lastPage + ".");    
+    }
+    req.session.lastPage = '/radical';  
+    res.send('What a radical visit! And the session expired time is: ' + req.session.cookie.maxAge);
+});
+
+app.get('/tubular', function(req, res){
+    if (req.session.lastPage){
+        console.log("Last page was: " + req.session.lastPage + ".");    
+    }
+
+    req.session.lastPage = '/tubular';
+    res.send('Are you a suffer? And the session expired time is: ' + req.session.cookie.maxAge);
+});
+
+
+app.listen(5000);
+
+
+
+2.1 express-session中间件的使用：
+
+　　只需要用express app的use方法将session挂载在‘/’路径即可，这样所有的路由都可以访问到session。可以给要挂载的session传递不同的option参数，来控制session的不同特性。具体可以参见官网：https://github.com/expressjs/session/blob/master/README.md。
+
+2.2 session内容的存储和更改：
+
+To store or access session data, simply use the request property req.session, which is (generally) serialized as JSON by the store, so nested objects are typically fine.
+　　一旦我们将express-session中间件用use挂载后，我们可以很方便的通过req参数来存储和访问session对象的数据。req.session是一个JSON格式的JavaScript对象，我们可以在使用的过程中随意的增加成员，这些成员会自动的被保存到option参数指定的地方，默认即为内存中去。
+
+2.3 session的生命周期
+
+　　session与发送到客户端浏览器的生命周期是一致的。而我们在挂载session的时候，通过option选项的cookie.maxAge成员，我们可以设置session的过期时间，以ms为单位（但是，如果session存储在mongodb中的话，任何低于60s(60000ms)的设置是没有用的，下文会有详细的解释）。如果maxAge不设置，默认为null，这样的expire的时间就是浏览器的关闭时间，即每次关闭浏览器的时候，session都会失效。
