@@ -1,0 +1,9 @@
+X-Powered-By是网站响应头信息其中的一个，出于安全的考虑，一般会修改或删除掉这个信息。
+
+如果你用的node.js express框架，那么X-Powered-By就会显示Express。如果用的thinkjs，那么X-Powered-By就会显示thinkjs.1...
+
+最近，在折腾node.js程序的时候，我就想把这个信息删除。具体删除方法如下：
+
+在Express中删除X-Powered-By
+var app = express();
+app.disable('x-powered-by');
