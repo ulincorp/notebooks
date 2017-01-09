@@ -10,3 +10,11 @@ SELECT * FROM information_schema.`TRIGGERS`;
 
 3.查询表格创建语句
 SHOW CREATE TABLE 'tablename'
+
+
+4.启动问题
+
+The server quit without updating PID file (/var/run/mysqld/mysqld.pid 
+解决方法:google 搜索 https://www.percona.com/forums/questions-discussions/percona-xtradb-cluster/27466-error-the-server-quit-without-updating-pid-file
+
+命令:subl /etc/mysql/my.cnf　添加 pid-file = /var/run/mysqld/mysqld.pid
