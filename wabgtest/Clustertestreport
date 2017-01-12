@@ -1,0 +1,89 @@
+ps -aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+
+rxy       4060  1.8  1.6 927848 66304 pts/1    Sl+  14:45   0:00 node app.js
+
+rxy       4225  0.1  0.6 876728 26040 pts/1    Sl+  14:49   0:00 node /home/rxy/
+rxy       4231  1.6  1.7 927740 67188 pts/1    Sl+  14:49   0:00 node app.js
+rxy       4237  3.0  1.6 927452 65752 pts/1    Sl+  14:49   0:01 /usr/bin/nodejs
+rxy       4243  3.0  1.6 927460 65708 pts/1    Sl+  14:49   0:01 /usr/bin/nodejs
+rxy       4249  3.0  1.6 927520 65760 pts/1    Sl+  14:49   0:01 /usr/bin/nodejs
+rxy       4255  3.0  1.6 927476 65704 pts/1    Sl+  14:49   0:01 /usr/bin/nodejs
+rxy       4261  3.0  1.6 927564 65784 pts/1    Sl+  14:49   0:01 /usr/bin/nodejs
+rxy       4262  3.0  1.6 927520 66016 pts/1    Sl+  14:49   0:01 /usr/bin/nodejs
+rxy       4268  3.0  1.6 927504 65920 pts/1    Sl+  14:49   0:01 /usr/bin/nodejs
+rxy       4269  3.0  1.6 927688 65988 pts/1    Sl+  14:49   0:01 /usr/bin/nodejs
+
+siege -c 100 -r 10 -u 127.0.0.1:3000/setting 
+Transactions:		        1000 hits
+Availability:		      100.00 %
+Elapsed time:		        8.20 secs
+Data transferred:	        0.47 MB
+Response time:		        0.01 secs
+Transaction rate:	      121.95 trans/sec
+Throughput:		        0.06 MB/sec
+Concurrency:		        1.07
+Successful transactions:        1000
+Failed transactions:	           0
+Longest transaction:	        0.13
+Shortest transaction:	        0.00
+ 
+siege -c 300 -r 10 -u 127.0.0.1:3000/setting
+Transactions:		        3000 hits
+Availability:		      100.00 %
+Elapsed time:		       10.30 secs
+Data transferred:	        1.41 MB
+Response time:		        0.04 secs
+Transaction rate:	      291.26 trans/sec
+Throughput:		        0.14 MB/sec
+Concurrency:		       11.83
+Successful transactions:        3000
+Failed transactions:	           0
+Longest transaction:	        0.25
+Shortest transaction:	        0.00
+
+siege -c 500 -r 10 -u 127.0.0.1:3000/setting 
+Transactions:		        5000 hits
+Availability:		      100.00 %
+Elapsed time:		        9.31 secs
+Data transferred:	        2.35 MB
+Response time:		        0.06 secs
+Transaction rate:	      537.06 trans/sec
+Throughput:		        0.25 MB/sec
+Concurrency:		       30.55
+Successful transactions:        5000
+Failed transactions:	           0
+Longest transaction:	        0.56
+Shortest transaction:	        0.00
+
+siege -c 1000 -r 10 -u 127.0.0.1:3000/setting
+Transactions:		       10000 hits
+Availability:		      100.00 %
+Elapsed time:		       16.94 secs
+Data transferred:	        4.70 MB
+Response time:		        0.59 secs
+Transaction rate:	      590.32 trans/sec
+Throughput:		        0.28 MB/sec
+Concurrency:		      349.81
+Successful transactions:       10000
+Failed transactions:	           0
+Longest transaction:	        4.76
+Shortest transaction:	        0.00
+
+siege -c 2000 -r 10 -u 127.0.0.1:3000/setting
+Transactions:		        4916 hits
+Availability:		       80.91 %
+Elapsed time:		        5.53 secs
+Data transferred:	        2.31 MB
+Response time:		        0.55 secs
+Transaction rate:	      888.97 trans/sec
+Throughput:		        0.42 MB/sec
+Concurrency:		      489.09
+Successful transactions:        4916
+Failed transactions:	        1160
+Longest transaction:	        3.83
+Shortest transaction:	        0.00
+
+
+
+

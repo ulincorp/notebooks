@@ -1,0 +1,85 @@
+siege -c 100 -r 10 -u http://127.0.0.1:3000/setting
+
+Transactions:		        1000 hits    //完成多少次处理
+Availability:		        100.00 %     //成功率
+Elapsed time:		        9.06 secs    //总共用时
+Data transferred:	        0.47 MB      //共数据传输
+Response time:		        0.04 secs    //相应用时：显示网络连接的速度
+Transaction rate:	        110.38trans/sec//平均每秒完成多少次处理：表示服务器后
+Throughput:		            0.05 MB/sec  //平均每秒传送数据
+Concurrency:		        4.66         //实际最高并发数
+Successful transactions:    1000         //成功处理次数
+Failed transactions:	    0            //失败处理次数
+Longest transaction:	    0.43         //每次传输所花最长时间
+Shortest transaction:	    0.00         //每次传输所花最短时间
+
+
+siege -c 300 -r 10 -u http://127.0.0.1:3000/setting
+
+Transactions:		        3000 hits
+Availability:		      100.00 %
+Elapsed time:		        9.12 secs
+Data transferred:	        1.41 MB
+Response time:		        0.01 secs
+Transaction rate:	      328.95 trans/sec
+Throughput:		        0.15 MB/sec
+Concurrency:		        4.93
+Successful transactions:        3000
+Failed transactions:	           0
+Longest transaction:	        0.14
+Shortest transaction:	        0.00
+
+
+siege -c 500 -r 10 -u http://127.0.0.1:3000/setting
+
+Transactions:		        5000 hits
+Availability:		      100.00 %
+Elapsed time:		       10.30 secs
+Data transferred:	        2.35 MB
+Response time:		        0.08 secs
+Transaction rate:	      485.44 trans/sec
+Throughput:		        0.23 MB/sec
+Concurrency:		       37.82
+Successful transactions:        5000
+Failed transactions:	           0
+Longest transaction:	        1.20
+Shortest transaction:	        0.00
+
+
+siege -c 1000 -r 10 -u http://127.0.0.1:3000/setting
+
+Transactions:		       10000 hits
+Availability:		      100.00 %
+Elapsed time:		       14.02 secs
+Data transferred:	        4.70 MB
+Response time:		        0.29 secs
+Transaction rate:	      713.27 trans/sec
+Throughput:		        0.34 MB/sec
+Concurrency:		      207.68
+Successful transactions:       10000
+Failed transactions:	           0
+Longest transaction:	        7.02
+Shortest transaction:	        0.00
+
+
+
+siege -c 2000 -r 10 -u http://127.0.0.1:3000/setting
+Transactions:		        4088 hits
+Availability:		       76.08 %
+Elapsed time:		        7.22 secs
+Data transferred:	        1.92 MB
+Response time:		        0.67 secs
+Transaction rate:	      566.21 trans/sec
+Throughput:		        0.27 MB/sec
+Concurrency:		      380.80
+Successful transactions:        4088
+Failed transactions:	        1285
+Longest transaction:	        7.09
+Shortest transaction:	        0.00
+
+
+
+
+
+
+
