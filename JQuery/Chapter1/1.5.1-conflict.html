@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title></title>
+	<script src="../jquery-3.2.1.js" type="text/javascript"></script>
+	<script src="../prototype-1.7.3.js" type="text/javascript"></script>
+</head>
+<body>
+<p id="hide">将被隐藏</p>
+<p class="onclick" >将被绑定单击事件</p>
+<script  type="text/javascript">
+	jQuery.noConflict();
+	jQuery(function(){
+		jQuery(".onclick").click(function(){
+			alert(jQuery(this).text());
+		})
+	})
+
+	$("hide").style.display = "none";
+
+// 	jQuery(function(){					//使用jQuery
+// 	jQuery("p").click(function(){
+// 		alert( jQuery(this).text() );
+// 	});
+// });
+</script>
+</body>
+</html>

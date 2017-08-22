@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="../jquery-3.2.1.js"></script>
+</head>
+<body>
+<p title=" choose your favourite fruit ">which fruit do you like?</p>
+<ul>
+    <li title="apple">apple</li>
+    <li title="origin">origin</li>
+    <li title="banana">banana</li>
+</ul>
+<script>
+
+/**remove
+删除节点,只是删除指向节点的引用，任然可以引用**/
+//  $li = $("ul li:eq(1)");
+// //可以有选择性的删除
+//  $li.remove("li[title!="origin"]");
+//  $li.appendTo($("ul"));
+
+/**detach
+删除节点，删除后仍然可以使用，所有绑定的事件，数据会保留下来,remove不可以
+**/
+// $li = $("ul li")
+// $li.click(function(){
+// 	alert($("ul li").html());	
+// })
+
+// $li.detach();
+// //$li.remove();
+// $li.appendTo($("ul"));
+
+/**empty
+清空节点，清空元素中所有后代节点的内容
+**/
+// $li = $("ul li").empty();
+
+/**clone
+克隆节点，克隆后的节点不具有事件，可以添加true属性
+**/
+$("ul li").click(function(){
+	//$(this).clone(true).appendTo($("ul"));
+	$(this).clone(true).appendTo($("ul"));
+})
+</script>
+</body>
+</html>

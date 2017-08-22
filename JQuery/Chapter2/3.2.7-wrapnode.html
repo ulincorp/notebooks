@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="../jquery-3.2.1.js"></script>
+</head>
+<body>
+<p title=" choose your favourite fruit ">which fruit do you like?</p>
+<ul>
+    <li title="apple">apple</li>
+    <li title="origin">origin</li>
+    <li title="banana">banana</li>
+</ul>
+<script>
+/**包裹节点
+wrap 单独包裹 wrapAll 若存在多个属性相同的进行外部包裹 wrapInner 内部包裹
+**/
+// $("p").wrap("<b></b>");
+
+$("ul li:eq(1)").wrapInner("<span>this is my favourite fruit</span>");
+</script>
+</body>
+</html>

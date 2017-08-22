@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="../jquery-3.2.1.js"></script>
+	<style>
+		.one {
+			font-size: 2em;
+		}
+
+		.two {
+			font-size: 8em;
+		}
+	</style>
+</head>
+<body>
+<p title=" choose your favourite fruit ">which fruit do you like?</p>
+<ul>
+    <li title="apple">apple</li>
+    <li title="origin">origin</li>
+    <li title="banana">banana</li>
+</ul>
+<button type="submit">ToggleClass</button>
+<script>
+/**样式
+设置样式: attr("class","classname") 
+添加样式: addClass("classname") 
+移除样式: removeClass("classname")  ps removeClass("classname1" "classname2") 或 removeClass() 删除多个样式或全部
+切换样式: toggle()
+判断样式: hasClass()
+**/
+// $("p").attr("class","one");
+// $("p").addClass("two");
+// $("p").removeClass("two");
+$("button").click(function(){
+	$("p").toggleClass("two");	
+})
+
+</script>
+</body>
+</html>

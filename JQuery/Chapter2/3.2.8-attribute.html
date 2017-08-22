@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="../jquery-3.2.1.js"></script>
+</head>
+<body>
+<p title=" choose your favourite fruit ">which fruit do you like?</p>
+<ul>
+    <li title="apple">apple</li>
+    <li title="origin">origin</li>
+    <li title="banana">banana</li>
+</ul>
+<script>
+/**属性**/
+
+//获取属性
+// $attr = $("p").attr("title");
+// alert($attr);
+
+//设置属性
+// $("p").attr("title","set the title attribute");
+// alert($("p").attr("title"));
+
+//移除属性
+$("p").removeAttr("title");
+alert($("p").attr("title"));
+</script>
+</body>
+</html>

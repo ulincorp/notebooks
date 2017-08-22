@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="../jquery-3.2.1.js"></script>
+</head>
+<body>
+<input type="checkbox" name="" id="sr" > <label>已阅</label>
+<script >
+	$(document).ready(function(){
+		$sr = $('#sr');
+
+		sr = $sr[0]; //$sr.get(0)
+
+		//Dom实现
+		// $sr.click(function(){
+		// 	// if($("#sr").attr("checked")){
+		// 	// 	alert("感谢你的支持！");
+		// 	// }
+		// 	if(sr.checked){
+		// 		alert("感谢你的支持！");
+		// 	}
+			
+		// })
+
+		//JQuery实现
+		$sr.click(function(){
+			if($sr.is(":checked")){
+				alert("感谢你的支持！");
+			}
+		})
+	})
+</script>
+</body>
+</html>

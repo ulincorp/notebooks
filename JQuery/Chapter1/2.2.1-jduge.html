@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="../jquery-3.2.1.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="jduge">
+	<span>Choose node use JQuery(if)</span>
+</div>
+<script   type="text/javascript">
+	$(document).ready(function(){
+		console.log("$$$$$$$$$$",$("#jduge").length);
+
+		//length判断
+		// if($("#jduge").length >0){
+		// 	alert("have selected the node with class of jduge!");
+		// }
+		//get(0)选择器判断
+		// if($("#jduge").get(0)){
+		// 	alert("have selected the node with class of jduge!");
+		// }
+
+		//[0]选择器判断
+		if($("#jduge")[0]){
+			alert("have selected the node with class of jduge!");	
+		}
+	})
+</script>
+</body>
+</html>

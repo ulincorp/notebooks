@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="../jquery-3.2.1.js"></script>
+</head>
+<body>
+<p title=" choose your favourite fruit ">which fruit do you like?</p>
+<ul>
+    <li title="apple">apple</li>
+    <li title="origin">origin</li>
+    <li title="banana">banana</li>
+</ul>
+<script>
+	//查找元素节点
+	// var $li2 = $("ul li:eq(1)");//select the second node in ul
+	// alert($li2.text());
+
+	//查找属性节点
+	//var $attr =$("p").attr("title");
+	//or
+	var $attr =$("p[title]").text();
+	alert($attr);
+
+	
+
+
+</script>
+</body>
+</html>
