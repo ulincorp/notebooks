@@ -1,0 +1,33 @@
+/*
+	这种情况的属性选择器也被称为“伪正则选择器”，因为它们提供类似 regular expression 的灵活匹配方式（但请注意，这些选择器并不是真正的正则表达式）：
+	[attr|=val] : 选择attr属性的值以val（包括val）或val-开头的元素（-用来处理语言编码）。
+	[attr^=val] : 选择attr属性的值以val开头（包括val）的元素。
+	[attr$=val] : 选择attr属性的值以val结尾（包括val）的元素。
+	[attr*=val] : 选择attr属性的值中包含字符串val的元素。	
+*/
+
+/* 语言选择的经典用法 */
+[lang|=val] {
+	font-weight: bold;
+}
+
+/* 
+    具有"data-vegetable"属性含有值"not spicy"的所有元素,都变回绿色
+*/
+[data-vegetable*="not spicy"] {
+	color:green;
+}
+
+/* 
+    具有"data-vegetable"属性含有值"not spicy"的所有元素,都变回绿色
+*/
+[data-quantity$="kg"] {
+	font-weight: bold;
+}
+
+/* 
+   具有属性"data-quantity"其值以"optional"开头的所有元素 
+*/
+[data-quantity^="optional"] {
+	opacity: 0.5;
+}

@@ -1,0 +1,9 @@
+#polite {
+	font-family: cursive;
+	/*text-transform: uppercase;*/
+}
+
+#rude {
+	font-family: monospace;
+	text-transform: uppercase;
+}
