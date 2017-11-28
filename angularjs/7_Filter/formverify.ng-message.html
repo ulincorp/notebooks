@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<link rel="alternate" href="../bower_components/angular/angular.js">
+	<link rel="alternate" href="../bower_components/angular-messages/angular-messages.js">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/foundation/5.5.3/css/foundation.min.css">
+</head>
+<body>
+<form name="signup_from" novalidate ng-submit="singupForm" ng-controller="signupController">
+	<label>Your name</label>
+	<input type="text" name="name" value="" ng-model="signup.name" ng-minlength="3" ng-maxlength="20" placeholder="" required>
+	<div class="error" ng-messages="signup_form.name.$error">
+		<div ng-messages="required">Make sure yu enter your name</div>
+		<div ng-messages="minlength">Your name must least 3 characters</div>
+		<div ng-messages="maxlength">Your name can't not longer than 20 characters</div>
+	</div>	
+	<button type="submit">Submit</button>
+</form>
+<script>
+	var myModule = angular.module("myApp",['ngMessages'])
+	.controller('signupController', ['$scope', function ($scope) {
+		
+	}])
+</script>
+</body>
+</html>

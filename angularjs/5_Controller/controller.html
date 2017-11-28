@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<script src="../bower_components/angular/angular.js"></script>
+</head>
+<body>
+<h1>This is a  simple calculate </h1>
+<div ng-controller="FirstController">
+	<button ng-click="add(1)" type="button">add</button>
+	<button ng-click="subtract(1)" type="button">subtract</button>
+	<div>
+		The current value is : {{count}}		
+	</div>
+</div>
+<script>
+	angular.module('myApp',[])
+	.controller('FirstController', ['$scope', function ($scope) {
+		$scope.count = 0;
+		$scope.add = function(countc){
+			$scope.count =  $scope.count + countc;
+		}
+
+		$scope.subtract = function(countc){
+			$scope.count =  $scope.count - countc;
+		}
+	}])
+</script>
+</body>
+</html>

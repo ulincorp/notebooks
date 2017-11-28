@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app ="myApp">
+<head>
+	<title></title>
+	<style>
+		.even:{
+			/*background-color: blue;*/
+			color: blue;
+		}
+
+		.odd {
+			/*background-color: red;*/
+            color:red;
+		}
+	</style>
+	<script src="../bower_components/angular/angular.js"></script>
+
+</head>
+<body>
+<ul ng-controller="PeopleController">
+    <li ng-repeat="person in people" ng-class= "{even: $even , odd: $odd}">
+    	{{person.name}} live in {{person.city}}
+    </li>
+</ul>
+<script>
+	angular.module('myApp',[])
+	.controller('PeopleController',function($scope){
+		$scope.people = [{name:'Jack',city:'London'},{name:'Rose',city:'Japanease'}];
+	})
+</script>
+</body>
+</html>

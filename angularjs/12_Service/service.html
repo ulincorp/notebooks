@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<script src="../bower_components/angular/angular.js"></script>
+</head>
+<body>
+<div ng-controller="UserController">
+	<p>The current user is : {{current_user}}</p>
+<h1>Constant</h1>
+<p>{{apiKey}}</p>
+
+<h1>Value</h1>
+</div>
+
+</body>
+<script>
+	angular.module('myApp')
+	.controller('UserController', ['$scope', function ($scope,UserService) {
+		// $scope.apiKey = apiKey;
+		$scope.apiKeyValue = apiKeyValue;
+		// console.log("^^^^^^^^^^^^^^^^^UserService",UserService);
+		// $scope.current_user = UserService.setCurrentUser;
+	}]);
+
+
+
+	angular.module('myApp.services',[])
+	.factory('UserService', [function ($http) {
+		var current_user ;
+	
+		return {
+			geCurrentUser:function(){
+				return current_user;
+			},
+			setCurrentUser:function(user){
+				current_user = user;
+			}
+		};
+	}])	
+</script>
+</html>

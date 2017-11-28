@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<!-- <script src="../bower_components/angular/angular.js"></script> -->
+	<script src="https://code.angularjs.org/1.2.6/angular.js"></script>
+</head>
+<body>
+<ul ng-controller="DashboardController">
+    <li ng-repeat="pr in pullRequests">
+    	{{pr.title}}
+    </li>
+</ul>
+<script>
+	angular.module('myApp',[])
+	.controller('DashboardController', ['$scope', 'GitHubService',function ($scope,GitHubService) {
+	 	GitHubService.getPullRequest()
+		.then(function(data){
+			$scope.pullRequests = data.data; // new release
+			$scope.pullRequests = data;
+			console.log('####################',$scope.pullRequests);
+		})
+	}])
+	.factory('GitHubService', ['$q',"$http",function ($q,$http) {
+		
+		/** new release**/ 
+		// var getPullRequest = function(){
+		// 	var deferred = $q.defer();
+		// 	$http.get('https://api.github.com/repos/angular/angular.js/pulls')
+		// 	.then(function(data){
+		// 		deferred.resolve(data);
+		// 	})
+		// 	.catch(function(reason){
+		// 		deferred.reject(reason);
+		// 	})
+		// 	return deferred.promise;
+		// }
+		
+		/** old release **/ 
+			var getPullRequest = function(){
+			var deferred = $q.defer();
+			$http.get('https://api.github.com/repos/angular/angular.js/pulls')
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(reason){
+				deferred.reject(reason);
+			})
+			return deferred.promise;
+		}
+		return {
+			getPullRequest:getPullRequest
+		};
+	}])
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="wizardApp">
+<head>
+	<title></title>
+	<script src = 'angular.js'></script>
+	<script src = 'angular-ui-router.js'></script>
+</head>
+<body>
+<div ng-controller="WizardSignupController">
+	<h2>Sign up wizard</h2>
+	<div ui-view></div>
+</div>
+
+<script>
+	angular.module('wizardApp',['ui.router','wizardapp.controller'])
+	.config(function($stateProvider,$urlRouterProvider){
+		$stateProvider
+		.state('start',{
+			url:'/step_1',
+			templateUrl:'partials/wizard/step_1.html'
+		})
+		.state('email',{
+			url:'step_2',
+			templateUrl:'partials/ward/step_2.html'
+		})
+		.state('finish',{
+			url:'/finish',
+			templateUrl:'partials/ward/step_3.html'
+		})
+	})
+
+
+	angular.module('wizardapp.controller',[])
+	.controller('WizardSignupController', ['$scope', function ($scope) {
+		$scope.user = {};
+		$scope.signup = function(){};
+	}])
+</script>
+</body>
+</html>

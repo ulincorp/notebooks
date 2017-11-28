@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+<!-- 	<script src="angular.js"></script>
+	<script src="./bower_components/angular-ui-mask/dist/mask.js"></script> -->
+
+	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<!-- <script type="text/javascript" src="bower_components/angular-ui-mask/dist/mask.js"></script> -->
+	<script src="https://cdn.bootcss.com/angular-ui-mask/1.8.6/mask.js"></script>
+</head>
+<body>
+<div ng-controller="MaskController">
+<label><input type="text" name="ccnum"  ui-mask ="9999999999999999999" ng-model="user.cc" /
+ placeholder="Credit card number"/></label>
+</div>
+<script>
+	angular.module('myApp',['ui.mask'])
+	.controller('MaskController',function(){
+
+	});
+</script>
+</body>
+</html>

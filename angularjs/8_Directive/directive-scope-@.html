@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<script src="../bower_components/angular/angular.js"></script>
+</head>
+<div my-directive some-url="http://news.baidu.com/" my-url-text="Click me to baidu news">	
+</div>
+<body>
+
+<script>
+	angular.module('myApp',[])
+	.directive('myDirective',function(){
+		return {
+			restrict:'EA',
+			scope:{
+				myUrl:'@someUrl',
+				myUrlText:'@'
+			},
+			template:`<div><a href={{myUrl}}>{{myUrlText}}</a></div>`,
+			replace:true
+		}
+	})
+</script>
+</body>
+</html>

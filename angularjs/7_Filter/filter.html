@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<script src="../bower_components/angular/angular.js"></script>
+
+	<!-- <script src="https://code.angularjs.org/1.2.6/angular.js"></script> -->
+</head>
+<body>
+<div ng-controller="DateController">
+<!-- currency -->
+<div>{{12333|currency}}</div>
+<!-- number -->
+<div>{{12333.52345234|number:4}}</div>
+<!-- date -->
+<div>{{today|date:'mediumTime'}}</div>	
+<div>{{today|date:'shortTime'}}</div>	
+
+<!-- year -->
+<div>{{today | date:'yyyy'}}</div> <!--2017-->
+<div>{{today | date:'yy'}}</div> <!--2017-->
+<div>{{today | date:'y'}}</div> <!--2017-->
+
+<!-- month -->
+<div>{{today | date:'MMMM'}}</div><!-- November -->
+<div>{{today | date:'MMM'}}</div><!-- Nov -->
+<div>{{today | date:'MM'}}</div><!-- 11 -->
+<div>{{today | date:'M'}}</div><!-- 11 -->
+
+<!-- date -->
+
+<div>{{today | date:'dd'}}</div> <!-- 16 -->
+<div>{{today | date:'d'}}</div> <!-- 16 -->
+<div>{{today | date:'EEEE'}}</div> <!-- Thursday -->
+<div>{{today | date:'EEE'}}</div> <!-- Thu -->
+
+<!-- hour -->
+<div>{{today | date:'HH'}}</div> <!-- 13 -->
+<div>{{today | date:'H'}}</div> <!-- 13 -->
+<div>{{today | date:'hh'}}</div> <!-- 01 -->
+<div>{{today | date:'h'}}</div>  <!-- 1 -->
+
+<!-- minute -->
+<div>{{today | date:'mm'}}</div>  <!-- 00 -->
+<div>{{today | date:'m'}}</div>  <!-- 0 -->
+
+
+<!-- second -->
+<div>{{today | date:'ss'}}</div> <!-- 50 -->
+<div>{{today | date:'s'}}</div> <!-- 50 -->
+<div>{{today | date:'.sss'}}</div> <!-- .540 -->
+
+
+<!--Custom -->
+<div>{{today | date:'yyyy:MM:dd'}}</div>
+<div>{{today | date:'HH:mm:ss:.sss'}}</div>
+
+<!-- array -->
+<div>{{["one","two","three","four","five"] | filter:'e'}}</div>
+
+<div>{{[{"name":"lilei", "class":"0101"},{"name":"hanmei","class":"0202"}] | filter:{'class':'0202'} }}</div>
+
+<!-- function -->
+
+<div>{{["one","two","three","four","five"] | filter:CaptureLize }}</div>
+
+<!-- json -->
+<div>{{["one","two","three","four","five"] | json }}</div>
+<!-- limitTo -->
+
+<div>{{["one","two","three","four","five"] | limitTo:1 }}</div>
+<div>{{"one two three four five " | limitTo:4 }}</div>
+
+<!-- uppercase lowercase -->
+<div>{{"sdfasdfadfsd" | uppercase }}</div>
+<div>{{"fasdfaASDFADFASD" | lowercase }}</div>
+
+<!-- orderBy -->
+
+<div>{{[{"name":"lilei", "class":"0101"},{"name":"hanmei","class":"0202"}] | orderBy:name:true }}</div>
+</div>
+
+<script>
+	var myModule = angular.module('myApp',[]);
+	myModule.controller('DateController',function($scope){
+		$scope.today = new Date();
+
+		// $scope.CaptureLize = function(str){
+		// 	console.log("$$$$$$$$$$$$$$$",str[0].toUpperCase());
+		// 	return str[0] = str[0].toUpperCase();
+		// }
+	})
+	myModule.filter('CaptureLize',function(str){
+			console.log("$$$$$$$$$$$$$$$",str);
+			return str[0] = str[0].toLowerCase();
+	})
+</script>
+</body>
+</html>

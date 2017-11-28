@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<!-- <script src="../bower_components/angular/angular.js"></script> -->
+	  <script src="https://code.angularjs.org/1.2.6/angular.js"></script>
+</head>
+<body>
+<div ng-controller="ServiceController">
+	<h1>Factory</h1>
+	<label for ='username'>
+		Type  in a GitHub sername
+	</label>
+	<input type="text" ng-model="username" name="" value="" placeholder="Enter a GitHub username">
+	<ul>
+	    <li ng-repeat="event in events">
+	    	{{event.actor.login}} {{event.repo.name}}
+	    </li>
+	</ul>
+
+	<h1>Service</h1>
+
+	<h1>Constant</h1>
+	<p>{{apiKey}}</p>
+
+	<h1>Value</h1>
+	<p>{{apiKeyValue}}</p>
+
+</div>
+
+<script>
+	angular.module('myApp',['myApp.service'])
+	.constant('apiKey', "23423434234")
+	.value('apiKeyValue', "adsfsdfsd")
+	.controller('ServiceController', ['$scope','githubService','$timeout','personService', function($scope,githubService,$timeout,personService) {
+		$scope.apiKey = apiKey;
+		$scope.apiKeyValue = apiKeyValue;
+		$scope.$watch('username',function(newUsername){
+			if(newUsername){
+				if(timeout){
+					$timeout.cancel(timeout);
+				}
+				var timeout = $timeout(function(){
+					githubService.events(newUsername).success(function(data,staus,headers){
+					$scope.events = data.data;
+				})
+				// personService.getName().success(function(data,status,headers){
+				// 	$scope.events = data.data;
+				// 	console.log('%%%%%%%%%%%%%%%%%%%%%%%%',data.data);
+				// })
+				},300)
+			}			
+		})		
+	}])
+	
+
+
+	angular.module('myApp.service',[])
+	.factory('githubService', ['$http',function ($http) {
+		var githubUrl = "https://api.github.com";
+
+		var runUserRequest = function(username,path){
+			return $http({
+				method:'JSONP',
+				url:githubUrl + '/users/' +
+				username + '/' + path + '?callback=JSON_CALLBACK'
+			})
+		}
+	
+		return {
+			events:function(username){
+				return runUserRequest(username,'events');
+			}
+	
+		};
+	}])
+	.service('personService',['$http',function($http){
+		// this.getName = function(){
+
+		// }
+
+		return {
+				getName : function(){
+				 return	$http({method:'GET',url:'https://api.github.com/users/uu/events?callback=angular.callbacks._i'})
+				}} 
+	}])
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "myapp",
+  "description": "",
+  "main": "",
+  "authors": [
+    "klink <kevin1224rxy@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.7"
+  }
+}

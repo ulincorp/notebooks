@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app ="myApp">
+<head>
+	<title></title>
+	<script src="../bower_components/angular/angular.js"></script>
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div ng-controller="CityController">
+	<select ng-options="city.name for city in cities"  ng-model="city">
+		<option value="">Choose City</option>		
+	</select>
+	Best City:{{city.name}}	
+</div>
+<script>
+  angular.module('myApp',[])
+  .controller('CityController',function($scope){
+  	$scope.cities = [
+  	{name:'Seatle'},
+  	{name:"San Francisco"},
+  	{name:"Chicago"},
+  	{name:"New York"},
+  	{name:"Boston"}
+  	]
+  })
+</script>
+</body>
+</html>

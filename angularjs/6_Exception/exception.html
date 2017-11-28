@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<script src="../bower_components/angular/angular.js"></script>
+</head>
+<body>
+<div ng-controller="ParseController">
+	<input type="text" ng-model="parsevalue"  placeholder="Please input a value"/>
+	<h1>{{parsevalue}}</h1>
+	
+</div>
+<script>
+  	var myModule = angular.module('myApp', []);
+	myModule.controller("ParseController",function($scope,$parse){
+		$scope.parsevalue = "";
+		console.log("$$$$$$$$$$parsevalue.name",$scope.parsevalue.name);
+
+		$scope.$watch('parsevalue',function(newv,oldv,scope){
+			console.log("#############newv",newv);
+			console.log("&&&&&&&&&&&&&oldv",oldv);
+			if(newv !== oldv){
+				var parFun = $parse('parsevalue');	
+				$scope.parsevalue= parFun(scope);
+			}			
+		})		
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<title></title>
+	<script src="../bower_components/angular/angular.js"></script>
+	<!-- <script src="../bower_components/bootstrap/dist/css/bootstrap.css"></script> -->
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"></script> -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/foundation/5.5.3/css/foundation.min.css">
+</head>
+<body>
+<form name="form" novalidate>
+<label>Your email:</label>
+<input type="email" name="email" ng-model="email" value="" placeholder="please input a email">
+
+<br><br/>
+<!-- required -->
+<label>required</label>
+<input type="text" name="" value="" placeholder="" required>
+
+<br><br/>
+<!-- minlength -->
+<label>minlength</label>
+<input type="text" name="" value="" placeholder="" minlength="5">
+
+<br><br/>
+<!-- maxlength -->
+<label>maxlength</label>
+<input type="text" name="" value="" placeholder="" maxlength="5">
+
+<br><br/>
+<!-- pattern -->
+<label>pattern</label>
+<input type="text" name="" value="" placeholder="" pattern=[a-zA-Z]>
+
+<br><br/>
+<!-- email -->
+<label>email</label>
+<input type="email" name="" value="" placeholder="" >
+
+<br><br/>
+<label>number</label>
+<!-- number -->
+<input type="number" name="" value="" placeholder="">
+
+<br><br/>
+<label>url</label>
+<!-- url-->
+<input type="url" name="" value="" placeholder="">
+</form>	
+
+
+<form name="signup_form" novalidate ng-submit="signupForm">
+<button type="submit" class="btn btn-default">Submit</button>
+<div class="row">
+	<div class="large-12 columns">
+		<label> Your name </label>
+		<input type="text" name="name"  ng-model = "signup.name" ng-minlength="3" ng-maxlength="20" value="" /placeholder="Name" required>		
+		<div class="error" ng-show="signup_form.name.$dirty && signup_form.name.$invalid">
+			<small class="error" ng-show="signup_form.name.$error.required">Your name is required.</small>
+			<small class="error" ng-show="signup_form.name.$error.minlength">Your name is required to be at least 3 characters</small>
+			<small class="error" ng-show="signup_form.name.$error.maxlength">Your name cannot be longer than 20 characters</small>
+		</div>
+	</div>
+</div>
+
+
+
+</form>
+
+<form >
+	
+</form>
+</body>
+</html>

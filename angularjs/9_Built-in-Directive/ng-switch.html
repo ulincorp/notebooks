@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<title><title>
+	<script src="../bower_components/angular/angular.js"></script>
+</head>
+<body>
+<div ng-switch on="person.name" ng-controller="SomeController">
+<input type="text" name="" value="" placeholder="" ng-model="person.name"/>
+
+<p ng-switch-default>And the winner is</p>	
+<h1 ng-switch-when="Ari">{{person.name}}</h1>
+</div>
+<script>
+	var SomeController = function($scope){
+		$scope.person = {
+			name:"Blue"
+		};
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../bower_components/angular-ui-router/angular-ui-router.js"></script>
+</head>
+<body>
+<div ng-controller="DemoController">
+	<div ng-view></div>
+</div>
+
+
+<script>
+	angular.module('myApp',['ui-router'])
+	.config(function('$stateProvider','$urlRouterProvider'){
+		$stateProvider
+		.state('start',
+		{
+			url:'/start',
+			templateUrl:'partial/start.html'
+		})
+		.state('home',
+		{
+			resolve:{
+				person:function(){
+					return {
+						name:"Ari",
+						email:"ari@gmail.com"
+					}
+				},
+				currentDetails:function($http){
+					return $http({
+						method:'JSONP',
+						url:'/curent_detail'
+					})
+				},
+				facebookId:function($http,currentDetails){
+					$http({
+						method:'GET',
+						url:'/current_user',
+						params:{
+							email:currentDetails.data.email[0]
+						}
+					})
+				}
+			},
+
+			controller:function($scope,person,currentDetails,facebookId){
+				$scope.person = person;
+			},
+
+			url:'/home',
+			templateUrl:'partial/home.html'
+		})
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<script src="../bower_components/angular/angular.js"></script>
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<!-- ng-model -->
+<input type="text" name="" value="" ng-model="someProperty" placeholder="">
+<br/>
+
+<!-- ng-readonly -->
+<input type="text" name="" value="" ng-readonly="someProperty" placeholder="">
+<br/>
+
+<!-- ng-disabled -->
+<button type="button" class="btn btn-default" ng-disabled="!someProperty">Submit</button>	
+
+<!-- ng-checked -->
+<br/>
+<input type="checkbox" ng-checked="someProperty" name="" value="" placeholder="">
+
+<br/>
+<label>select two fish:</label>
+<select name="" multiple>
+	<option value="">One fish</option>
+	<option value="" ng-selected="someProperty">Two fish</option>
+</select>
+
+<br/>
+<!-- ng-href -->
+<a ng-href={{someUrl}}>Click me go to baidu after 5 second</a>
+
+<br/>
+<!-- ng-src -->
+<img ng-src={{somePic}} alt="The image will be presented after 5 second">
+
+<br/>
+<!-- ng-app -->
+<h1>Hi {{someContent}}</h1>
+<button type="button" ng-click="someAction()">Click</button>
+
+<br/>
+<!-- ng-controller -->
+<div ng-controller="SomeController">{{someModel.someProperty}}
+<button type="button" ng-click="someAction()">Comunication</button>
+</div>
+
+<div ng-controller="FirstController">
+{{firstModel.someProperty}}
+<button type="button" ng-click="firstAction()">Comu to first</button>
+<div ng-controller="SecondController">
+{{firstModel.someProperty}}
+<button type="button" ng-click="secondAction()">Comu to second</button>
+</div>	
+</div>
+
+
+
+<!-- ng-if -->
+<div ng-if="1+1==2" ng-init="name='tttt'">
+	Hi {{name}}
+</div>
+
+<div ng-if="1+4==2" ng-init="name='rgsedrg'">
+	Hi {{name}}
+</div>
+<body>
+<script>
+	angular.module('myApp',[])
+	.run(function($rootScope,$timeout){
+		$rootScope.someProperty = false;
+		
+		$rootScope.someAction = function(){
+			$rootScope.someContent = "tyler";
+		}
+
+		$timeout(function(){
+			$rootScope.someProperty = true;
+			$rootScope.someUrl ="https://www.baidu.com";
+			$rootScope.somePic = "http://d.ifengimg.com/mw978_mh598/p3.ifengimg.com/a/2017_47/e121032b82506e7_size97_w533_h800.jpg";
+		},5000)
+	})
+	.controller('SomeController',function($scope){
+		$scope.someModel = {
+			someProperty:""
+		};
+
+		$scope.someAction = function(){
+			$scope.someModel.someProperty = "Hi link";
+		}
+	})
+	.controller('FirstController',function($scope){
+		$scope.someModel = {
+			someProperty:""
+		};
+		$scope.firstAction = function(){
+			$scope.someModel.someProperty = "Hi first";
+		}	
+	})
+	.controller('SecondController',function($scope){
+		$scope.secondAction = function(){
+			$scope.someModel.someProperty = "Hi second";
+		}
+	})
+</script>
+</body>
+</html>

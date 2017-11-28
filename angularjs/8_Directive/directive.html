@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<script src="../bower_components/angular/angular.js"></script>
+</head>
+<div my-directive>	
+</div>
+<body>
+
+<script>
+	angular.module('myApp',[])
+	.directive('myDirective',function(){
+		return {
+			restrict:'EA',
+			template:`<div><a href="https://www.baidu.com">baidu</a></div>`,
+			replace:true
+		}
+	})
+</script>
+</body>
+</html>

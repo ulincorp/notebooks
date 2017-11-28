@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div>
+	this is {{username}} dashboard
+</div>
+<h1>practice the $location</h1>
+<div>
+<p>$location.path(){{path}}</p>
+<p><a href= "{{$location.path('/home')}}" >go to home</a></p>
+<p><a href= "{{$location.path('/home').replace()}}" >go to home</a></p>
+<p>$location.absUrl()   %%%%%%    {{absUrl}}</p>
+<p>$location.hash()   %%%%% {{hash}}</p>
+<p>$location.host()   %%%%%{{host}}</p>
+<p>$location.port()   %%%%% {{port}}</p>
+<p>$location.protocol()   %%%%%  {{protocol}}</p>
+<p>$location.search()   %%%%%  {{search}}</p>
+<p>$location.url()    %%%%% {{url}}</p>
+
+<p>$window.location.href</p><a href="$window.location.href('/home')">Home</a>
+</div>
+<a href="/">Home</a>
+</body>
+</html>
